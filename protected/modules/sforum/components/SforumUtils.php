@@ -1,0 +1,1 @@
+<?php/*** some utiliities**/class SforumUtils {	public static function time() {		return time();	}}
