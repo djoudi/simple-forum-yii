@@ -41,8 +41,8 @@ class SforumActiveRecord extends CActiveRecord {
 					$this->created_by = \Yii::app()->user->getId();
 				}
 				
-				if(\Yii::app()->user->getUsername() !== null ) {
-					$this->created_by_name = \Yii::app()->user->getUsername();
+				if(\Yii::app()->user->getName() !== null ) {
+					$this->created_by_name = \Yii::app()->user->getName();
 				}
 			}
 		}
@@ -54,20 +54,20 @@ class SforumActiveRecord extends CActiveRecord {
 				$this->modified_by = \Yii::app()->user->getId();
 			}
 			
-			if(\Yii::app()->user->getUsername() !== null ) {
-				$this->modified_by_name = \Yii::app()->user->getUsername();
+			if(\Yii::app()->user->getName() !== null ) {
+				$this->modified_by_name = \Yii::app()->user->getName();
 			}
 		}
 		
-		$this->nullifyDateFields();
+		$this->nullifyEmptyFields();
 		
 		return parent::beforeSave();
 	}
 	
-	protected function nullifyDateFields()
+	protected function nullifyEmptyFields()
 	{
 		foreach( $this->getTableSchema()->columns as $column) {
-			if( $column->dbType == 'date' || $column->dbType == 'datetime' || $column->dbType == 'time' || $column->dbType == 'timestamp' )
+			if( $column->dbType == 'date' || $column->dbType == 'datetime' || $column->dbType == 'time' || $column->dbType == 'timestamp'|| $column->dbType == 'float' || $column->dbType == 'double' || $column->dbType == 'decimal' || $column->dbType == 'numeric' )
 			{
 				if( isset( $this->{$column->name} ) || strlen($this->{$column->name}) == 0 ) {
 					unset( $this->{$column->name} );

@@ -65,8 +65,10 @@ class SforumbaseController extends CController {
 	 * Creates a new model.
 	 * If creation is successful, the browser will be redirected to the 'view' page.
 	 */
-	public function createModel($modelName)
+	public function createModel($modelName, $args=array())
 	{
+		extract($args);
+		
 		$model=new $modelName;
 
 		// Uncomment the following line if AJAX validation is needed
@@ -74,9 +76,31 @@ class SforumbaseController extends CController {
 
 		if(isset($_POST[$modelName]))
 		{
+			if( isset($beforePopulate) ) {
+				$beforePopulate->bindTo($this, $this);
+				$beforePopulate($model);
+			}
+			
 			$model = SforumActiveRecord::populateFromPOST($model);
+			
+			if( isset($afterPopulate) ) {
+				$afterPopulate->bindTo($this, $this);
+				$afterPopulate($model);
+			}
+			
+			if( isset($beforeSave) ) {
+				$beforeSave->bindTo($this, $this);
+				$beforeSave($model);
+			}
 			if($model->save()) {
-				$this->safeRedirect(array('view','id'=>$model->id));
+			
+				if( isset($afterSave) ) {
+					$afterSave->bindTo($this, $this);
+					$afterSave($model);
+				}
+				else {
+					$this->safeRedirect(array('view','id'=>$model->id));
+				}
 			}
 		}
 		else {
@@ -93,8 +117,9 @@ class SforumbaseController extends CController {
 	 * If update is successful, the browser will be redirected to the 'view' page.
 	 * @param integer $id the ID of the model to be updated
 	 */
-	protected function updateModel($id, $modelName)
+	protected function updateModel($id, $modelName, $args=array())
 	{
+		extract($args);
 		$model=$this->loadModel($id);
 
 		// Uncomment the following line if AJAX validation is needed
@@ -102,10 +127,31 @@ class SforumbaseController extends CController {
 
 		if(isset($_POST[$modelName]))
 		{
+			if( isset($beforePopulate) ) {
+				$beforePopulate->bindTo($this, $this);
+				$beforePopulate($model);
+			}
+			
 			$model = SforumActiveRecord::populateFromPOST($model);
-			//$model->attributes=$_POST[$modelName];
-			if($model->save())
-				$this->safeRedirect(array('view','id'=>$model->id));
+			
+			if( isset($afterPopulate) ) {
+				$afterPopulate->bindTo($this, $this);
+				$afterPopulate($model);
+			}
+			
+			if( isset($beforeSave) ) {
+				$beforeSave->bindTo($this, $this);
+				$beforeSave($model);
+			}
+			if($model->save()) {
+				if( isset($afterSave) ) {
+					$afterSave->bindTo($this, $this);
+					$afterSave($model);
+				}
+				else {
+					$this->safeRedirect(array('view','id'=>$model->id));
+				}
+			}
 		}
 		else {
 			//$model = SforumActiveRecord::populateFromRequest($model);

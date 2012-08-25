@@ -1,6 +1,6 @@
 <?php
 
-class SforumController extends SforumbaseController
+class ScategoryController extends SforumbaseController
 {
 	/**
 	 * Displays a particular model.
@@ -19,7 +19,11 @@ class SforumController extends SforumbaseController
 	 */
 	public function actionCreate()
 	{
-		$this->createModel('Sforum');
+		$this->createModel('Sforum', array(
+			'afterSave' => function($model) {
+				$this->safeRedirect(array('sforum/index','id'=>$model->id));
+			},
+		));
 	}
 
 	/**
@@ -60,7 +64,10 @@ class SforumController extends SforumbaseController
 	 */
 	public function loadModel($id)
 	{
-		return $this->loadModelGeneric('Sforum', $id);
+		$model = $this->loadModelGeneric('Sforum', $id);
+		$model->parent_id = 0;
+		
+		return $model;
 	}
 
 }
