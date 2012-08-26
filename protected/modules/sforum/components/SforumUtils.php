@@ -1,1 +1,1 @@
-<?php/*** some utiliities**/class SforumUtils {	public static function time() {		return time();	}}
+<?php/*** some utiliities**/class SforumUtils {	public static function time() {		return time();	}		public static function displayDateTime($timestamp) {		return date('F j, Y, g:i a', $timestamp);	}}

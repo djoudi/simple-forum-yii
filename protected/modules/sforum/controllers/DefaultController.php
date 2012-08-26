@@ -4,6 +4,10 @@ class DefaultController extends SforumbaseController
 {
 	public function actionIndex()
 	{
-		$this->render('index');
+		$categories = Sforum::model()->with('forums')->findAll('t.parent_id=0');
+		
+		$this->render('index', array(
+			'categories' => $categories
+		));
 	}
 }

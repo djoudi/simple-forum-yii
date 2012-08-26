@@ -33,4 +33,13 @@ class SforumModule extends CWebModule
 		else
 			return false;
 	}
+	
+	private $_assetsUrl;
+ 
+    public function getAssetsUrl()
+    {
+        if ($this->_assetsUrl === null)
+            $this->_assetsUrl = Yii::app()->getAssetManager()->publish( Yii::getPathOfAlias('sforum.assets'), false, -1, true );
+        return $this->_assetsUrl;
+    }
 }

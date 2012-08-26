@@ -54,6 +54,7 @@ class Sforum extends SforumActiveRecord
 			array('name, image', 'length', 'max'=>255),
 			array('created_by_name, modified_by_name', 'length', 'max'=>100),
 			array('description', 'safe'),
+			array('parent_id', 'in', 'range' => array_keys(self::getCategoryList()), 'allowEmpty' => true ),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, name, description, image, status, of_posts, of_topics, created_by, created_by_name, modified_by, modified_by_name, created_on, modified_on, last_post_id, last_topic_id, type', 'safe', 'on'=>'search'),
@@ -105,6 +106,7 @@ class Sforum extends SforumActiveRecord
 			'last_post_id' => 'Last Post',
 			'last_topic_id' => 'Last Topic',
 			'type' => 'Type',
+			'parent_id' => 'Forum Category',
 		);
 	}
 
@@ -139,5 +141,27 @@ class Sforum extends SforumActiveRecord
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
+	}
+	
+	public static function getCategoryList() {
+		static $list = array();
+		
+		if( !$list ) {
+			$cats = self::getCategories();
+			foreach( $cats as $category) {
+				$list[$category->id] = $category->name;
+			}
+		}
+		
+		return $list;
+	}
+	
+	public static function getCategories() {
+		static $list = array();
+		if( !$list ) {
+			$list = \Sforum::model()->findAll('parent_id=0');
+		}
+		
+		return $list;
 	}
 }

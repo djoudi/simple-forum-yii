@@ -1,0 +1,41 @@
+.sforum-list-row {
+	border: 1px solid #00CC00;
+	margin-bottom: 10px;
+}
+.sforum-category-row {
+	background-color: #009900;
+	color: #FFF;
+	font-weight: bold;
+	text-align: left;
+	margin: 0px;
+}
+.sforum-category-row table{
+	margin: 0px;
+	padding: 0px;
+	
+}
+.sforum-category-row table td{
+	color: #FFF;
+	font-weight: bold;
+	height: 22px;
+}
+.sforum-category-row table td a{
+	color: #FFF;
+	font-weight: normal;
+	text-decoration:none;
+}
+.sforum-forum-table-div {
+	padding: 3px 3px 3px 3px;
+}
+.sforum-forum-table {
+}
+
+table.sforum-forum-table {
+	margin: 0px;
+	padding: 0px;
+}
+table.sforum-forum-table td {
+	vertical-align: top;
+	text-align: left;
+	border-bottom: 1px solid #CCC;
+}
