@@ -46,7 +46,7 @@ class Spost extends SforumActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('created_by, created_by_name, modified_by, modified_by_name, created_on, modified_on, sforum_id, stopic_id', 'required'),
+			array('sforum_id, stopic_id', 'required'),
 			array('created_by, modified_by, created_on, modified_on, sforum_id, stopic_id, status, has_attachment', 'numerical', 'integerOnly'=>true),
 			array('created_by_name, modified_by_name', 'length', 'max'=>100),
 			array('ip', 'length', 'max'=>255),
@@ -56,7 +56,41 @@ class Spost extends SforumActiveRecord
 			array('id, created_by, created_by_name, modified_by, modified_by_name, created_on, modified_on, sforum_id, stopic_id, body, ip, status, has_attachment', 'safe', 'on'=>'search'),
 		);
 	}
-
+	
+	protected function afterSave()
+	{
+		if($this->isNewRecord && $this->forum) {
+			$this->forum->of_posts++;
+			$this->forum->save();
+		}
+		
+		if($this->isNewRecord && $this->topic) {
+			$this->topic->of_replies++;
+			$this->topic->save();
+		}
+		
+		return parent::afterSave();
+	}
+	
+	protected function afterDelete()
+	{
+		if($this->forum) {
+			$this->forum->of_posts--;
+			if($this->forum->of_posts <= 0)
+				$this->forum->of_posts = 0;
+			$this->forum->save();
+		}
+		
+		if($this->topic) {
+			$this->topic->of_replies--;
+			if($this->topic->of_replies <= 0)
+				$this->topic->of_replies = 0;
+			$this->topic->save();
+		}
+		
+		return parent::afterDelete();
+	}
+	
 	/**
 	 * @return array relational rules.
 	 */
@@ -65,8 +99,8 @@ class Spost extends SforumActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'forum' => array(self::HAS_ONE, 'Sforum', 'sforum_id'),
-			'topic' => array(self::HAS_ONE, 'Stopic', 'stopic_id')
+			'forum' => array(self::BELONGS_TO, 'Sforum', 'sforum_id'),
+			'topic' => array(self::BELONGS_TO, 'Stopic', 'stopic_id')
 		);
 	}
 

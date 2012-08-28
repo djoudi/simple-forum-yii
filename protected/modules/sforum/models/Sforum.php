@@ -80,7 +80,7 @@ class Sforum extends SforumActiveRecord
 		return array(
 			'forums' => array(self::HAS_MANY, 'Sforum', 'parent_id'),
 			'category' => array(self::HAS_ONE, 'Sforum', 'parent_id'),
-			'topics' => array(self::HAS_MANY, 'Stopic', 'sforum_id')
+			'topics' => array(self::HAS_MANY, 'Stopic', 'sforum_id', 'order' => 'topics.id desc')
 		);
 	}
 

@@ -1,0 +1,20 @@
+<?php
+?>
+<tr>
+	<td><a href="">
+	<?=CHtml::encode($topic->name)?>
+	</a>
+	</td>
+	<td>
+	<?=CHtml::encode($topic->created_by_name)?>
+	</td>
+	<td>
+	<?=SForumUtils::displayDateTime($topic->created_on)?>
+	</td>
+	<td>
+	<?=CHtml::encode($topic->of_replies)?>
+	</td>
+	<td>
+	<?=CHtml::encode($topic->of_views)?>
+	</td>
+</tr>

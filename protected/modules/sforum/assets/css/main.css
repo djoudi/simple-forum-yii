@@ -39,3 +39,35 @@ table.sforum-forum-table td {
 	text-align: left;
 	border-bottom: 1px solid #CCC;
 }
+.forum-view-buttons {
+	margin: 0px;
+	padding: 0px;
+	text-align: right;
+	padding-right: 10px;
+	width: 100%;
+	
+}
+.forum-topic-replies {
+	margin: 0px;
+	padding: 0px;
+}
+.forum-topic-replies-div {
+	margin: 0px;
+	padding: 0px;
+	border: 1px solid #009900;
+	width: 100%;
+	padding: 2px;
+}
+table.forum-topic-replies-table {
+	margin: 0px;
+	padding: 0px;
+}
+table.forum-topic-replies-table td {
+	vertical-align: top;
+	text-align: left;
+	border-bottom: 1px solid #CCC;
+}
+table.forum-topic-replies-table th {
+	background-color: #009900;
+	color: #FFF;
+}

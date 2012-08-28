@@ -52,7 +52,7 @@ class Stopic extends SforumActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('created_by, created_by_name, modified_by, modified_by_name, created_on, modified_on, sforum_id, name, of_posts, last_post_id, of_views, of_replies, first_post_id', 'required'),
+			array('sforum_id, name', 'required'),
 			array('created_by, modified_by, created_on, modified_on, sforum_id, status, of_posts, last_post_id, type, of_views, of_replies, has_attachment, first_post_id', 'numerical', 'integerOnly'=>true),
 			array('created_by_name, modified_by_name', 'length', 'max'=>100),
 			array('name, image', 'length', 'max'=>255),
@@ -62,7 +62,27 @@ class Stopic extends SforumActiveRecord
 			array('id, created_by, created_by_name, modified_by, modified_by_name, created_on, modified_on, sforum_id, name, description, image, status, of_posts, last_post_id, type, of_views, of_replies, has_attachment, first_post_id', 'safe', 'on'=>'search'),
 		);
 	}
-
+	
+	protected function afterSave()
+	{
+		if($this->isNewRecord && $this->forum) {
+			$this->forum->of_topics++;
+			$this->forum->save();
+		}
+		return parent::afterSave();
+	}
+	
+	protected function afterDelete()
+	{
+		if($this->forum) {
+			$this->forum->of_topics--;
+			if($this->forum->of_topics <= 0)
+				$this->forum->of_topics = 0;
+			$this->forum->save();
+		}
+		return parent::afterDelete();
+	}
+	
 	/**
 	 * @return array relational rules.
 	 */
@@ -71,7 +91,7 @@ class Stopic extends SforumActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'forum' => array(self::HAS_ONE, 'Sforum', 'sforum_id'),
+			'forum' => array(self::BELONGS_TO, 'Sforum', 'sforum_id'),
 			'posts' => array(self::HAS_MANY, 'Spost', 'stopic_id')
 		);
 	}
