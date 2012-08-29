@@ -1,7 +1,7 @@
 <?php
 ?>
 <tr>
-	<td><a href="">
+	<td><a href="<?=$this->createUrl('stopic/view', array('id'=>$topic->id))?>">
 	<?=CHtml::encode($topic->name)?>
 	</a>
 	</td>

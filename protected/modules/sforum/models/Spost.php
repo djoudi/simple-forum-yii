@@ -119,7 +119,7 @@ class Spost extends SforumActiveRecord
 			'modified_on' => 'Modified On',
 			'sforum_id' => 'Sforum',
 			'stopic_id' => 'Stopic',
-			'body' => 'Body',
+			'body' => 'Reply',
 			'ip' => 'Ip',
 			'status' => 'Status',
 			'has_attachment' => 'Has Attachment',

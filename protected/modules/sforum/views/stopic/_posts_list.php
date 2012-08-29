@@ -1,0 +1,1 @@
+<?php$dataProvider = $topic->comments();$this->widget('zii.widgets.CListView', array(    'dataProvider'=>$dataProvider,    'itemView'=>'_posts_list_row',	'emptyText' => 'no replies',    'sortableAttributes'=>array(    ),));?>

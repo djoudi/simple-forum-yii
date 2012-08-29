@@ -39,9 +39,9 @@ class SforumbaseController extends CController {
 	}
 	
 	public function init() {
+		parent::init();
+		
 		Yii::app()->clientscript->registerCssFile($this->module->assetsUrl.'/css/main.css');
-
-		return parent::init();
 	}
 	
 	public function loadModel($id) {
