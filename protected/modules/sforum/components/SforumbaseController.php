@@ -5,6 +5,20 @@ class SforumbaseController extends CController {
 	public $menu = array();
 	
 	/**
+	 * Declares class-based actions.
+	 */
+	public function actions()
+	{
+		return array(
+			// captcha action renders the CAPTCHA image displayed on the contact page
+			'captcha'=>array(
+				'class'=>'CCaptchaAction',
+				'backColor'=>0xFFFFFF,
+			),
+		);
+	}
+	
+	/**
 	 * @return array action filters
 	 */
 	public function filters()
@@ -30,7 +44,7 @@ class SforumbaseController extends CController {
 			),
 			*/
 			array('allow',
-				'users'=>array('@'),
+				'users'=>array('*'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -42,6 +56,7 @@ class SforumbaseController extends CController {
 		parent::init();
 		
 		Yii::app()->clientscript->registerCssFile($this->module->assetsUrl.'/css/main.css');
+		Yii::app()->clientscript->registerCoreScript('jquery.ui');
 	}
 	
 	public function loadModel($id) {

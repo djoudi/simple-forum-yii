@@ -61,6 +61,8 @@ table.sforum-forum-table td {
 table.forum-topic-replies-table {
 	margin: 0px;
 	padding: 0px;
+	width: 100%;
+	border:none;
 }
 table.forum-topic-replies-table td {
 	vertical-align: top;
@@ -74,6 +76,7 @@ table.forum-topic-replies-table th {
 .forum-topic-reply-row {
 	width: 100%;
 	padding: 3px 5px 3px 5px;
+	margin-bottom: 10px;
 	border-radius: 6px;
 	-moz-border-radius: 6px;
 	-webkit-border-radius: 6px;
@@ -110,4 +113,22 @@ a.link:hover {
 }
 a.link:visited {
 	text-decoration: none !important;
+}
+.reply-form  h4 {
+	margin: 0px;
+	padding: 0px;
+	font-weight: bold;
+}
+.author-info {
+	font-style: italic;
+	color: #999999;
+}
+
+.sorter {
+	width: 49%;
+	float: left;
+}
+.summary {
+	width: 49%;
+	float: right;
 }

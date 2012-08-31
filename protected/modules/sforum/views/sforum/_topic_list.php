@@ -5,37 +5,18 @@
 
 <div class="forum-topic-replies-div">
 <?php
-if($forum->topics):
-?>
-<table class="forum-topic-replies-table" width="100%" cellpadding=0 cellspacing=0 border=0>
-<tr>
-	<th>
-	<?=Stopic::model()->getAttributeLabel('name')?>
-	</th>
-	<th>
-	<?=Stopic::model()->getAttributeLabel('created_by_name')?>
-	</th>
-	<th>
-	<?=Stopic::model()->getAttributeLabel('created_on')?>
-	</th>
-	<th>
-	<?=Stopic::model()->getAttributeLabel('of_replies')?>
-	</th>
-	<th>
-	<?=Stopic::model()->getAttributeLabel('of_views')?>
-	</th>
-</tr>
-<?php
-foreach( $forum->topics as $topic ) {
-	$this->renderPartial('_topic_list_row', array(
-		'topic' => $topic,
-	));
-}
-?>
-</table>
-<?php
-else:
-	echo "No topics found";
-endif;
+$dataProvider = $forum->topics();
+
+$this->widget('zii.widgets.CListView', array(
+	'itemsTagName' => 'table',
+	'itemsCssClass' => 'forum-topic-replies-table',
+    'dataProvider'=>$dataProvider,
+    'itemView'=>'_topic_list_row',
+	'emptyText' => '<p>&nbsp;</p>',
+	'summaryText' => 'Displaying {start} - {end} of {count} topics',
+    'sortableAttributes'=>array(
+		'name', 'of_replies', 'of_views'
+    ),
+));
 ?>
 </div>

@@ -104,21 +104,21 @@ class Stopic extends SforumActiveRecord
 		return array(
 			'id' => 'ID',
 			'created_by' => 'Created By',
-			'created_by_name' => 'Created By Name',
+			'created_by_name' => 'Created By',
 			'modified_by' => 'Modified By',
-			'modified_by_name' => 'Modified By Name',
+			'modified_by_name' => 'Modified By',
 			'created_on' => 'Created On',
 			'modified_on' => 'Modified On',
 			'sforum_id' => 'Sforum',
-			'name' => 'Name',
+			'name' => 'Topic',
 			'description' => 'Description',
 			'image' => 'Image',
 			'status' => 'Status',
 			'of_posts' => 'Of Posts',
 			'last_post_id' => 'Last Post',
 			'type' => 'Type',
-			'of_views' => 'Of Views',
-			'of_replies' => 'Of Replies',
+			'of_views' => '# Of Views',
+			'of_replies' => '# Of Replies',
 			'has_attachment' => 'Has Attachment',
 			'first_post_id' => 'First Post',
 		);
@@ -169,7 +169,10 @@ class Stopic extends SforumActiveRecord
 					':sforum_id' => $this->sforum_id,
 				),
 				'with' => array('topic', 'forum'),
-				'order' => "t.id DESC",
+				'order' => "t.id ASC",
+			),
+			'pagination'=>array(
+				'pageSize'=> Yii::app()->controller->module->commentsPerPage,
 			),
 		));
 	}

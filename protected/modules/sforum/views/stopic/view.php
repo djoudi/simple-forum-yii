@@ -36,8 +36,12 @@ else {
 	
 	<div class="forum-topic-replies">
 		<div class="forum-topic-reply-row odd-reply">
-			<h3 class="first"><a class="link" href="#a-<?=$model->id?>"><?php echo CHtml::encode($model->name); ?></a></h3>
-			<p><?php echo CHtml::encode($model->description); ?></p>
+			<h3 class="first"><a class="link" href="#a-0"><?php echo CHtml::encode($model->name); ?></a></h3>
+			<span class="author-info">
+				<?php echo CHtml::encode($model->created_by_name); ?>, 
+				<?php echo SforumUtils::displayDateTime($model->created_on); ?>
+			</span>
+			<p><?php echo nl2br(CHtml::encode($model->description)); ?></p>
 		</div>
 		<?php
 		$this->renderPartial('_posts_list', array(
@@ -53,7 +57,7 @@ else {
 			if( $this->module->ananymousComments ) {
 				$this->renderPartial('_reply_form_ananymous', array(
 					'topic' => $model,
-					'model' => new Spost(),
+					'model' => $post,
 				));
 			}
 		}
@@ -61,35 +65,15 @@ else {
 		{
 			$this->renderPartial('_reply_form', array(
 				'topic' => $model,
-				'model' => new Spost(),
+				'model' => $post,
 			));
 		}
 			
 		?>
 	</div>
 </div>
-<?php 
-/*
-$this->widget('zii.widgets.CDetailView', array(
-	'data'=>$model,
-	'attributes'=>array(
-		'id',
-		'name',
-		'description',
-		'image',
-		'status',
-		'of_posts',
-		'of_topics',
-		'created_by',
-		'created_by_name',
-		'modified_by',
-		'modified_by_name',
-		'created_on',
-		'modified_on',
-		'last_post_id',
-		'last_topic_id',
-		'type',
-	),
-)); 
-*/
-?>
+<script>
+if(window.location.hash.indexOf('#a-') != -1) {
+	 $(window.location.hash + '-div').effect("highlight", {}, 5000);
+}
+</script>

@@ -41,7 +41,7 @@ class SforumActiveRecord extends CActiveRecord {
 					$this->created_by = \Yii::app()->user->getId();
 				}
 				
-				if(\Yii::app()->user->getName() !== null ) {
+				if(\Yii::app()->user->getName() !== null && !$this->created_by_name ) {
 					$this->created_by_name = \Yii::app()->user->getName();
 				}
 			}
@@ -54,7 +54,7 @@ class SforumActiveRecord extends CActiveRecord {
 				$this->modified_by = \Yii::app()->user->getId();
 			}
 			
-			if(\Yii::app()->user->getName() !== null ) {
+			if(\Yii::app()->user->getName() !== null && !$this->modified_by_name ) {
 				$this->modified_by_name = \Yii::app()->user->getName();
 			}
 		}

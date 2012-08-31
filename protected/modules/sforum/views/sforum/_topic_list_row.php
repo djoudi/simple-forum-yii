@@ -1,20 +1,34 @@
 <?php
+if($index == 0):
 ?>
 <tr>
-	<td><a href="<?=$this->createUrl('stopic/view', array('id'=>$topic->id))?>">
-	<?=CHtml::encode($topic->name)?>
+	<th width="70%">
+	<?=Stopic::model()->getAttributeLabel('name')?>
+	</th>
+	<th>
+	<?=Stopic::model()->getAttributeLabel('of_replies')?>
+	</th>
+	<th>
+	<?=Stopic::model()->getAttributeLabel('of_views')?>
+	</th>
+</tr>
+<?php
+endif;
+?>
+<tr>
+	<td><a href="<?=$this->createUrl('stopic/view', array('id'=>$data->id))?>">
+	<?=CHtml::encode($data->name)?>
 	</a>
+	<br/>
+	<span class="author-info">
+		by <?php echo CHtml::encode($data->created_by_name); ?>, 
+		<?php echo SforumUtils::displayDateTime($data->created_on); ?>
+	</span>
 	</td>
 	<td>
-	<?=CHtml::encode($topic->created_by_name)?>
+	<?=CHtml::encode($data->of_replies)?>
 	</td>
 	<td>
-	<?=SForumUtils::displayDateTime($topic->created_on)?>
-	</td>
-	<td>
-	<?=CHtml::encode($topic->of_replies)?>
-	</td>
-	<td>
-	<?=CHtml::encode($topic->of_views)?>
+	<?=CHtml::encode($data->of_views)?>
 	</td>
 </tr>

@@ -8,9 +8,52 @@ class StopicController extends SforumbaseController
 	 */
 	public function actionView($id)
 	{
+		$model = $this->loadModel($id);
+		
+		$post = $this->saveReply($model);
+		
 		$this->render('view',array(
-			'model'=>$this->loadModel($id),
+			'model'=>$model,
+			'post' => $post,
 		));
+		
+		$model->of_views++;
+		$model->save();
+	}
+	
+	protected function saveReply($topic) {
+		$post = new Spost();
+		
+		if( Yii::app()->user->isGuest )
+		{
+			if( $this->module->ananymousComments ) {
+				$post = new CommentForm();
+			}
+			else {
+				return $post;
+			}
+		}
+		else {
+		}
+		
+		$name = get_class($post);
+		
+		if(isset($_POST[$name]) && is_array($_POST[$name])) {
+			
+			SforumActiveRecord::populateFromPOST($post, array('id'));
+			$post->stopic_id = $topic->id;
+			$post->sforum_id = $topic->sforum_id;
+			
+			if( $post->validate() && $post->save() ) {
+				if(isset($post->topic) && $post->topic)
+					$page = ceil( $post->topic->of_replies / $this->module->commentsPerPage );
+				else
+					$page = ceil( $topic->of_replies / $this->module->commentsPerPage );
+				$this->redirect($this->createUrl('view', array('id' => $topic->id, 'Spost_page' => $page)) . '#a-' . $post->id );
+			}
+		}
+		
+		return $post;
 	}
 	
 	/**

@@ -46,14 +46,22 @@ class Spost extends SforumActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('sforum_id, stopic_id', 'required'),
+			array('sforum_id, stopic_id, body', 'required'),
 			array('created_by, modified_by, created_on, modified_on, sforum_id, stopic_id, status, has_attachment', 'numerical', 'integerOnly'=>true),
 			array('created_by_name, modified_by_name', 'length', 'max'=>100),
 			array('ip', 'length', 'max'=>255),
-			array('body', 'safe'),
+			
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, created_by, created_by_name, modified_by, modified_by_name, created_on, modified_on, sforum_id, stopic_id, body, ip, status, has_attachment', 'safe', 'on'=>'search'),
+		);
+	}
+	
+	protected function nonRequestFields() {
+		return array(
+			'status' => 1,
+			'has_attachment' => 1,
+			'ip' => 1,
 		);
 	}
 	
@@ -154,5 +162,19 @@ class Spost extends SforumActiveRecord
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
+	}
+	
+	protected function beforeSave() {
+	
+		if($this->isNewRecord) {
+			$this->status = 0;
+			
+			if(isset($_SERVER['REMOTE_ADDR'])) $this->ip = $_SERVER['REMOTE_ADDR'];
+			
+			if(Yii::app()->controller && Yii::app()->controller->module && Yii::app()->controller->module->autoApproveComments) {
+				$this->status = 1;
+			}
+		}
+		return parent::beforeSave();
 	}
 }

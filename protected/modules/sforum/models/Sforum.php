@@ -164,4 +164,20 @@ class Sforum extends SforumActiveRecord
 		
 		return $list;
 	}
+	
+	public function topics() {
+		return new CActiveDataProvider('Stopic', array(
+			'criteria'=>array(
+				'condition' => "t.sforum_id=:sforum_id",
+				'params' => array(
+					':sforum_id' => $this->id,
+				),
+				'with' => array('forum'),
+				'order' => "t.id ASC",
+			),
+			'pagination'=>array(
+				'pageSize'=> Yii::app()->controller->module->topicsPerPage,
+			),
+		));
+	}
 }

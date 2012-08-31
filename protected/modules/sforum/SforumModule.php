@@ -10,7 +10,11 @@ class SforumModule extends CWebModule
 	
 	public $version = '1.0';
 	
+	public $publicRead = true;
 	public $ananymousComments = true;
+	public $commentsPerPage = 30;
+	public $autoApproveComments = true;
+	public $topicsPerPage = 30;
 	
 	public function init()
 	{

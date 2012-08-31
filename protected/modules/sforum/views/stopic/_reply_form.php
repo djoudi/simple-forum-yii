@@ -4,20 +4,19 @@
 /* @var $form CActiveForm */
 ?>
 
-<div class="form">
+<div class="reply-form">
 
-<?php $form=$this->beginWidget('CActiveForm', array(
-	'id'=>'scomment-form',
-	'enableAjaxValidation'=>false,
-));
-echo $form->hiddenField($model, 'stopic_id', array());
-echo $form->hiddenField($model, 'sforum_id', array());
-?>
-	<?php echo $form->errorSummary($model); ?>
+	<h4>Post a Reply</h4>
 
-
+	<?php $form=$this->beginWidget('CActiveForm', array(
+		'id'=>'scomment-form',
+		'enableAjaxValidation'=>false,
+	));
+	echo $form->hiddenField($model, 'stopic_id', array());
+	echo $form->hiddenField($model, 'sforum_id', array());
+	?>
 	<div class="row">
-		<?php echo $form->labelEx($model,'body'); ?>
+		<?php //echo $form->labelEx($model,'body'); ?>
 		<?php echo $form->textArea($model,'body',array('rows'=>6, 'cols'=>50)); ?>
 		<?php echo $form->error($model,'body'); ?>
 	</div>

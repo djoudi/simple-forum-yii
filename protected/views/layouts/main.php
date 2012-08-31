@@ -56,7 +56,7 @@
 		</div>
 	</div>
 	<?php else: ?>
-	<div id="contenst">
+	<div id="contenst" class="span-22 prepend-1 append-1">
 		<?php echo $content; ?>
 	</div>
 	<?php endif; ?>
