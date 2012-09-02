@@ -1,6 +1,7 @@
 <?php
 
 class SforumActiveRecord extends CActiveRecord {
+	private $_old = null;
 	
 	protected function nonRequestFields() {
 		return array();
@@ -17,6 +18,14 @@ class SforumActiveRecord extends CActiveRecord {
 				'modified_on' => 1,
 			)
 		);
+	}
+	
+	public function getOld() {
+		if($this->_old == null && isset($this->id) && $this->id ) {
+			$this->_old = CActiveRecord::model(get_class($this))->findByPk($this->id);
+		}
+		
+		return $this->_old;
 	}
 	
 	/**

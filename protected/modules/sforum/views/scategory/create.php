@@ -3,7 +3,7 @@
 /* @var $model Sforum */
 
 $this->breadcrumbs=array(
-	'Category'=>array('sforum/index'),
+	'Forums'=>array('default/index'),
 	'Create',
 );
 

@@ -20,8 +20,11 @@ class ScategoryController extends SforumbaseController
 	public function actionCreate()
 	{
 		$this->createModel('Sforum', array(
+			'beforeSave' => function($model) {
+				$model->parent_id = 0;
+			},
 			'afterSave' => function($model) {
-				$this->safeRedirect(array('sforum/index','id'=>$model->id));
+				$this->safeRedirect(array('default/index'));
 			},
 		));
 	}
@@ -33,7 +36,11 @@ class ScategoryController extends SforumbaseController
 	 */
 	public function actionUpdate($id)
 	{
-		$this->updateModel($id, 'Sforum');
+		$this->updateModel($id, 'Sforum', array(
+			'afterSave' => function($model) {
+				$this->safeRedirect(array('default/index'));
+			},
+		));
 	}
 
 	/**

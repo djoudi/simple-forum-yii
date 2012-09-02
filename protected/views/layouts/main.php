@@ -42,7 +42,7 @@
 		'links'=>$this->breadcrumbs,
 	)); ?><!-- breadcrumbs -->
 	
-	<?php if(!Yii::app()->user->isGuest): ?>
+	<?php if(!Yii::app()->user->isGuest && Yii::app()->user->isAdmin): ?>
 	<div class="two-column">
 		<div class="span-18">
 			<div id="content">

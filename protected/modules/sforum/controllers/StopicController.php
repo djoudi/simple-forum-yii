@@ -105,5 +105,22 @@ class StopicController extends SforumbaseController
 	{
 		return $this->loadModelGeneric('Stopic', $id);
 	}
+	
+	public function actionComments() {
+		
+		$dataProvider=new CActiveDataProvider('Spost', array(
+			'criteria'=>array(
+				'with' => array('topic', 'forum'),
+				'order' => "t.status ASC, t.id ASC",
+			),
+			'pagination'=>array(
+				'pageSize'=> 100,
+			),
+		));
+		
+		$this->render('comments',array(
+			'dataProvider'=>$dataProvider,
+		));
+	}
 
 }

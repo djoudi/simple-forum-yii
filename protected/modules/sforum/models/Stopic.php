@@ -163,7 +163,7 @@ class Stopic extends SforumActiveRecord
 	public function comments() {
 		return new CActiveDataProvider('Spost', array(
 			'criteria'=>array(
-				'condition' => "t.stopic_id=:stopic_id AND t.sforum_id=:sforum_id",
+				'condition' => "t.stopic_id=:stopic_id AND t.sforum_id=:sforum_id AND t.status=1",
 				'params' => array(
 					':stopic_id' => $this->id,
 					':sforum_id' => $this->sforum_id,

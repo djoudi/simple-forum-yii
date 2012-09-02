@@ -24,9 +24,11 @@
 		<?php echo $form->textField($model,'name', array('size' => 60)); ?>
 		<?php echo $form->error($model,'name'); ?>
 	</div>
-
+	
 	<div class="row">
 		<?php echo $form->labelEx($model,'body'); ?>
+	</div>
+	<div class="row">
 		<?php echo $form->textArea($model,'body',array('rows'=>6, 'cols'=>50)); ?>
 		<?php echo $form->error($model,'body'); ?>
 	</div>

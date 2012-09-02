@@ -4,5 +4,5 @@
 		<?php echo CHtml::encode($data->created_by_name); ?>, 
 		<?php echo SforumUtils::displayDateTime($data->created_on); ?>
 	</span>
-	<p><?php echo nl2br(CHtml::encode($data->body)); ?></p>
+	<p><?php echo SforumUtils::post($data->body); ?></p>
 </div>

@@ -35,21 +35,74 @@ class SforumbaseController extends CController {
 	 * @return array access control rules
 	 */
 	public function accessRules()
-	{
-		return array(
-			/*
-			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
-				'users'=>array('admin'),
+	{		
+		$aclrules = array();
+		$defaultrules = array(
+		);
+		
+		$rules = array(
+			'DefaultController' => array(
+				array(
+					'allow',
+					'actions' => array('index', 'captcha'),
+					'users'=>array('@'),
+				),
 			),
-			*/
-			array('allow',
-				'users'=>array('*'),
+			'ScategoryController' => array(
 			),
-			array('deny',  // deny all users
-				'users'=>array('*'),
+			'SforumController' => array(
+				 array(
+					'allow',
+					'actions' => array('view', 'captcha'),
+					'users'=>array('@'),
+				),
+			),
+			'StopicController' => array(
+				array(
+					'allow',
+					'actions' => array('view', 'captcha', 'create', 'edit'),
+					'users'=>array('@'),
+				)
 			),
 		);
+		
+		if($this->module->publicRead) {
+			array_unshift($rules['DefaultController'], array(
+				'allow',
+				'actions' => array('index', 'captcha'),
+				'users'=>array('*'),
+			));
+			
+			array_unshift($rules['SforumController'], array(
+				'allow',
+				'actions' => array('view', 'captcha'),
+				'users'=>array('*'),
+			));
+			
+			array_unshift($rules['StopicController'], array(
+				'allow',
+				'actions' => array('view', 'captcha'),
+				'users'=>array('*'),
+			));
+		}
+		$controllerName = get_class($this);
+		
+		
+		if(isset( $rules[$controllerName] )) {
+			$aclrules = $rules[$controllerName];
+		}
+		else {
+			$aclrules = $defaultrules;
+		}
+
+		$aclrules[] = array('allow',
+			'expression'=>"Yii::app()->user->isAdmin",
+		);
+		$aclrules[] = array('deny',
+			'users'=>array('*'),
+		);
+		
+		return $aclrules;
 	}
 	
 	public function init() {

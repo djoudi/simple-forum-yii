@@ -1,6 +1,8 @@
 <div class="forum-view-buttons">
 	<input type="button" value=" Create Topic " onclick="window.location='<?=$this->createUrl('/sforum/stopic/create', array('Stopic[sforum_id]' => $forum->id))?>';"/> 
+	<!--
 	<input type="button" value=" Create Poll " onclick="window.location='<?=$this->createUrl('/sforum/stopic/createpoll', array('Stopic[sforum_id]' => $forum->id))?>';"/>
+	-->
 </div>
 
 <div class="forum-topic-replies-div">

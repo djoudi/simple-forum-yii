@@ -65,14 +65,37 @@ class Spost extends SforumActiveRecord
 		);
 	}
 	
+	protected function beforeSave() {
+	
+		if($this->isNewRecord) {
+			$this->status = 0;
+			
+			if(isset($_SERVER['REMOTE_ADDR'])) $this->ip = $_SERVER['REMOTE_ADDR'];
+			
+			if(Yii::app()->controller && Yii::app()->controller->module && Yii::app()->controller->module->autoApproveComments) {
+				$this->status = 1;
+			}
+		}
+		
+		return parent::beforeSave();
+	}
+	
 	protected function afterSave()
 	{
-		if($this->isNewRecord && $this->forum) {
+		$count = false;
+		if( isset($this->status) && $this->status == 1 && ( $this->isNewRecord || ($this->old && $this->old->status != $this->status) ) ) {
+			$count = true;
+		}
+		
+		if( Yii::app()->user->isAdmin )
+			$count = true;
+		
+		if($count && $this->forum) {
 			$this->forum->of_posts++;
 			$this->forum->save();
 		}
 		
-		if($this->isNewRecord && $this->topic) {
+		if($count && $this->topic) {
 			$this->topic->of_replies++;
 			$this->topic->save();
 		}
@@ -164,17 +187,4 @@ class Spost extends SforumActiveRecord
 		));
 	}
 	
-	protected function beforeSave() {
-	
-		if($this->isNewRecord) {
-			$this->status = 0;
-			
-			if(isset($_SERVER['REMOTE_ADDR'])) $this->ip = $_SERVER['REMOTE_ADDR'];
-			
-			if(Yii::app()->controller && Yii::app()->controller->module && Yii::app()->controller->module->autoApproveComments) {
-				$this->status = 1;
-			}
-		}
-		return parent::beforeSave();
-	}
 }
