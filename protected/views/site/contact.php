@@ -39,13 +39,13 @@ If you have business inquiries or other questions, please fill out the following
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'name'); ?>
-		<?php echo $form->textField($model,'name'); ?>
+		<?php echo $form->textField($model,'name', array('size' => 40)); ?>
 		<?php echo $form->error($model,'name'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'email'); ?>
-		<?php echo $form->textField($model,'email'); ?>
+		<?php echo $form->textField($model,'email', array('size' => 40)); ?>
 		<?php echo $form->error($model,'email'); ?>
 	</div>
 

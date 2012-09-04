@@ -122,5 +122,39 @@ class StopicController extends SforumbaseController
 			'dataProvider'=>$dataProvider,
 		));
 	}
+	
+	public function actionApproveComments() {
+		
+		if( isset($_POST['Spost']) && isset($_POST['Spost']['id']) ) {
+			$model = $this->loadModelGeneric('Spost', $_POST['Spost']['id']);
+			
+			if($model && $model->status == 0) {
+				$model->status = 1;
+				$model->save();
+				
+				Yii::app()->user->setFlash('success', "Comment has been approved");
+			}
+		}
+		
+		
+		$this->redirect( $this->createUrl('comments', array()) );
+	}
+	
+	public function actionDeleteComment() {
+		
+		if( isset($_POST['Spost']) && isset($_POST['Spost']['id']) ) {
+			$model = $this->loadModelGeneric('Spost', $_POST['Spost']['id']);
+			
+			if($model) {
+				$model->delete();
+				Yii::app()->user->setFlash('success', "Comment has been deleted");
+			}
+		}
+		
+		
+		$this->redirect( $this->createUrl('comments', array()) );
+	}
+	
+	
 
 }

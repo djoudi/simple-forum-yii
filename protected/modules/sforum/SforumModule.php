@@ -15,6 +15,7 @@ class SforumModule extends CWebModule
 	public $commentsPerPage = 30;
 	public $autoApproveComments = false;
 	public $topicsPerPage = 30;
+	public $emailAlerts = true;
 	
 	public function init()
 	{

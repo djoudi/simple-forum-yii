@@ -2,6 +2,10 @@
 <div class="container">
 	<div class="span-18">
 		<div id="content">
+			<?php
+			Yii::import('sforum.components.SforumUtils');
+			echo SforumUtils::showFlash();
+			?>
 			<?php echo $content; ?>
 		</div><!-- content -->
 	</div>

@@ -6,8 +6,32 @@
 		<?php echo CHtml::encode($data->ip); ?>
 	</span>
 	<p><?php echo SforumUtils::post($data->body); ?></p>
-	<span>
-	<input type="button" value=" <?=($data->status==1?'Approved':'Approve')?> " <?=($data->status==1?'disabled':'')?> /> 
-	<input type="button" value=" Delete " /> 
+	
+	<span style="">
+		<?php 
+		echo CHtml::beginForm($this->createUrl('approvecomments'), 'post', array('style' => 'margin:0;padding:0;display:inline !important;'));
+		
+		echo CHtml::activeHiddenField($data, 'id');
+		
+		$htmlOpts = array();
+		if( $data->status==1 ) {
+			$htmlOpts['disabled'] = 'disabled';
+		}
+		echo CHtml::submitButton(' '.($data->status==1?'Approved':'Approve') . ' ', $htmlOpts ); 
+		
+		echo CHtml::endForm();
+		?>
+	</span>
+	
+	<span style="">
+		<?php 
+		echo CHtml::beginForm($this->createUrl('deletecomment'), 'post', array('style' => 'margin:0;padding:0;display:inline !important;'));
+		echo CHtml::activeHiddenField($data, 'id');
+		
+		$htmlOpts = array();
+		echo CHtml::submitButton(' Delete ', $htmlOpts ); 
+		
+		echo CHtml::endForm();
+		?>
 	</span>
 </div>

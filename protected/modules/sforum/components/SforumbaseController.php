@@ -109,6 +109,7 @@ class SforumbaseController extends CController {
 		parent::init();
 		
 		Yii::app()->clientscript->registerCssFile($this->module->assetsUrl.'/css/main.css');
+		Yii::app()->clientscript->registerScriptFile($this->module->assetsUrl.'/js/main.js');
 		Yii::app()->clientscript->registerCoreScript('jquery.ui');
 	}
 	

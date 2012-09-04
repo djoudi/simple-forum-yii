@@ -22,15 +22,16 @@
 <div class="container" id="page">
 
 	<div id="header">
-		<div id="logo"><?php echo CHtml::encode(Yii::app()->name); ?></div>
+		<div id="logo"><a href="http://www.diligencelabs.com/"><img src="http://www.diligenceapps.com/themes/professional_theme/logo.png" height="30" align="bottom" alt="diligencelabs logo" title="Diligence Labs" /></a> <?php echo CHtml::encode(Yii::app()->name); ?></div>
 	</div><!-- header -->
 
 	<div id="mainmenu">
 		<?php $this->widget('zii.widgets.CMenu',array(
 			'items'=>array(
 				array('label'=>'Home', 'url'=>array('/site/index')),
+				array('label'=>'Installation', 'url'=>array('/site/installation')),
 				array('label'=>'Forums', 'url'=>array('/sforum/default/index')),
-				array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
+				array('label'=>'About', 'url'=>'http://www.diligencelabs.com/aboutus.php'),
 				array('label'=>'Contact', 'url'=>array('/site/contact')),
 				array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
 				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
@@ -46,6 +47,10 @@
 	<div class="two-column">
 		<div class="span-18">
 			<div id="content">
+				<?php
+				Yii::import('sforum.components.SforumUtils');
+				echo SforumUtils::showFlash();
+				?>
 				<?php echo $content; ?>
 			</div><!-- content -->
 		</div>
@@ -57,6 +62,10 @@
 	</div>
 	<?php else: ?>
 	<div id="contenst" class="span-22 prepend-1 append-1">
+		<?php
+		Yii::import('sforum.components.SforumUtils');
+		echo SforumUtils::showFlash();
+		?>
 		<?php echo $content; ?>
 	</div>
 	<?php endif; ?>
@@ -67,6 +76,7 @@
 	</div><!-- footer -->
 
 </div><!-- page -->
+
 
 </body>
 </html>
