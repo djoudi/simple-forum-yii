@@ -41,7 +41,7 @@ else {
 				<?php echo CHtml::encode($model->created_by_name); ?>, 
 				<?php echo SforumUtils::displayDateTime($model->created_on); ?>
 			</span>
-			<p><?php echo nl2br(CHtml::encode($model->description)); ?></p>
+			<p><?php echo SforumUtils::post($model->description); ?></p>
 		</div>
 		<?php
 		$this->renderPartial('_posts_list', array(
