@@ -46,15 +46,17 @@ class Sforum extends SforumActiveRecord
 	 */
 	public function rules()
 	{
+		$categories = array_keys( self::getCategoryList() );
+		$categories[] = 0;
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
 			array('name', 'required'),
-			array('status, of_posts, of_topics, created_by, modified_by, created_on, modified_on, last_post_id, last_topic_id, type, parent_id', 'numerical', 'integerOnly'=>true),
+			array('status, of_posts, of_topics, created_by, modified_by, created_on, modified_on, last_post_id, last_topic_id, type, parent_id, ordering', 'numerical', 'integerOnly'=>true),
 			array('name, image', 'length', 'max'=>255),
 			array('created_by_name, modified_by_name', 'length', 'max'=>100),
 			array('description', 'safe'),
-			array('parent_id', 'in', 'range' => array(0) + array_keys(self::getCategoryList()), 'allowEmpty' => true ),
+			array('parent_id', 'in', 'range' => $categories, 'allowEmpty' => true ),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, name, description, image, status, of_posts, of_topics, created_by, created_by_name, modified_by, modified_by_name, created_on, modified_on, last_post_id, last_topic_id, type', 'safe', 'on'=>'search'),

@@ -19,6 +19,8 @@ class ScategoryController extends SforumbaseController
 	 */
 	public function actionCreate()
 	{
+		$_REQUEST['Sforum']['ordering'] = mt_rand(1, 999);
+		
 		$this->createModel('Sforum', array(
 			'beforeSave' => function($model) {
 				$model->parent_id = 0;

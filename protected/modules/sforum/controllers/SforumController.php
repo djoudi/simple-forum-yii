@@ -19,6 +19,7 @@ class SforumController extends SforumbaseController
 	 */
 	public function actionCreate()
 	{
+		$_REQUEST['Sforum']['ordering'] = mt_rand(1, 999);
 		$this->createModel('Sforum');
 	}
 

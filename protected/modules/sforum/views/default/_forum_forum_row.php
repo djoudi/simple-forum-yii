@@ -4,13 +4,16 @@
 		echo CHtml::encode($forum->name);
 		?></b>
 		</a>
+		<?php if(Yii::app()->user->isAdmin): ?>
+		 - <a href="<?=$this->createUrl('sforum/update', array('id' => $forum->id));?>">Edit</a>
+		<?php endif; ?>
 		<p>
 		<?php
 		echo CHtml::encode($forum->description);
 		?>
 	</p>
 	</td>
-	<td valign="top" width="50"><?php
+	<td valign="top" width="60"><?php
 		echo $forum->of_topics . ' Topics <br/>';
 		echo $forum->of_posts . ' Posts <br/>';
 	?></td>
