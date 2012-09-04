@@ -4,21 +4,21 @@
 $this->pageTitle=Yii::app()->name;
 ?>
 <style>
-ul {
+ol.install {
 }
-li {
+ol.install li {
 	font-size: 13px;
 	line-height: 25px;
 	padding-bottom: 10px;
 }
-li p {
+ol.install li p {
 	line-height: 22px !important;
 	font-size: 12px  !important;
 }
 </style>
 
 <h1>Prerequisites </h1>
-<ol>
+<ol class="install">
 	<li>
 	User component must be enabled in your config.  i.e.  <b>config/main.php</b>
 	<p>
@@ -80,7 +80,7 @@ li p {
 
 <h1>Installtion</h1>
 
-<ol>
+<ol class="install">
 	<li>
 	<a href="#Download">Download</a> the Simple Forum.
 	</li>

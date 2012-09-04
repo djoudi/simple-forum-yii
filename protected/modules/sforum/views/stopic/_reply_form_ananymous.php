@@ -21,8 +21,18 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'name'); ?>
-		<?php echo $form->textField($model,'name', array('size' => 60)); ?>
+	</div>
+	<div class="row">
+		<?php echo $form->textField($model,'name', array('size' => 40, 'maxlength' => '100')); ?>
 		<?php echo $form->error($model,'name'); ?>
+	</div>
+	
+	<div class="row">
+		<?php echo $form->labelEx($model,'email'); ?>
+	</div>
+	<div class="row">
+		<?php echo $form->textField($model,'email', array('size' => 40, 'maxlength' => '100')); ?>
+		<?php echo $form->error($model,'email'); ?>
 	</div>
 	
 	<div class="row">
@@ -41,7 +51,7 @@
 		<?php echo $form->textField($model,'verifyCode'); ?>
 		</div>
 		<div class="hint">Please enter the letters as they are shown in the image above.
-		<br/>Letters are not case-sensitive.</div>
+		( Letters are not case-sensitive )</div>
 		<?php echo $form->error($model,'verifyCode'); ?>
 	</div>
 	<?php endif; ?>

@@ -8,7 +8,7 @@
 class CommentForm extends CFormModel
 {
 	public $name;
-	//public $email;
+	public $email;
 	//public $subject;
 	public $body;
 	public $verifyCode;
@@ -23,7 +23,8 @@ class CommentForm extends CFormModel
 	{
 		return array(
 			// name, email, subject and body are required
-			array('name, body', 'required'),
+			array('name, email, body', 'required'),
+			array('email', 'email'),
 			array('name', 'length', 'max'=>100),
 			// verifyCode needs to be entered correctly
 			array('verifyCode', 'captcha', 'allowEmpty'=>!CCaptcha::checkRequirements()),
@@ -48,6 +49,7 @@ class CommentForm extends CFormModel
 		$post->stopic_id = $this->stopic_id;
 		$post->sforum_id = $this->sforum_id;
 		$post->body = $this->body;
+		$post->email = $this->email;
 		
 		$post->created_by_name = $this->name;
 		$post->modified_by_name = $this->name;

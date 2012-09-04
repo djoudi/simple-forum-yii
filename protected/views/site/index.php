@@ -24,4 +24,7 @@ $this->pageTitle=Yii::app()->name;
 Demo at <a href="<?=$this->createUrl('/sforum/default/index')?>">demo forum</a></p>
 
 <p>
+Download Full Code from : <a href="https://github.com/diligencelabs/simple-forum-yii">https://github.com/diligencelabs/simple-forum-yii</a>
+
+<p>
 Feel free to ask in the <a href="<?=$this->createUrl('/sforum/default/index')?>">forum</a>, should you have any questions.</p>
