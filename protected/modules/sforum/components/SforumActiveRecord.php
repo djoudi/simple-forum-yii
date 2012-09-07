@@ -88,17 +88,17 @@ class SforumActiveRecord extends CActiveRecord {
 	/**
 	*  populate From POST
 	*/
-	public static function populateFromPOST( $model, $exclude=[] ) {
+	public static function populateFromPOST( $model, $exclude=array() ) {
 		$name = get_class($model);
-		return self::requestPopulate($model, isset($_POST[$name])?$_POST[$name]:[], $exclude);
+		return self::requestPopulate($model, isset($_POST[$name])?$_POST[$name]:array(), $exclude);
 	}
 	
 	/**
 	*  populate From REQUEST
 	*/
-	public static function populateFromRequest( $model, $exclude=[] ) {
+	public static function populateFromRequest( $model, $exclude=array() ) {
 		$name = get_class($model);
-		return self::requestPopulate($model, isset($_REQUEST[$name])?$_REQUEST[$name]:[], $exclude);
+		return self::requestPopulate($model, isset($_REQUEST[$name])?$_REQUEST[$name]:array(), $exclude);
 	}
 	
 	/**
@@ -111,11 +111,11 @@ class SforumActiveRecord extends CActiveRecord {
 	* @param $exclude Array of fields that should be excluded from the population
 	* @return  model
 	*/
-	protected static function requestPopulate( $model, $request, $exclude=[] ) {
+	protected static function requestPopulate( $model, $request, $exclude=array() ) {
 		if( !is_array($request) || !$request )
 			return $model;
 		
-		$excludes = [];
+		$excludes = array();
 		if( $exclude )
 			$excludes = array_combine($exclude, $exclude);
 		
