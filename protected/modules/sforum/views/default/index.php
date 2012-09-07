@@ -4,6 +4,8 @@
 $this->breadcrumbs=array(
 	'Forums',
 );
+
+
 ?>
 
 <?php

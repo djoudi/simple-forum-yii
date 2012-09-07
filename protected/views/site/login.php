@@ -7,6 +7,7 @@ $this->pageTitle=Yii::app()->name . ' - Login';
 $this->breadcrumbs=array(
 	'Login',
 );
+
 ?>
 
 <h1>Login</h1>
@@ -31,7 +32,7 @@ $this->breadcrumbs=array(
 		<?php echo $form->passwordField($model,'password'); ?>
 		<?php echo $form->error($model,'password'); ?>
 		<p class="hint">
-			Hint: You may login with <kbd>test</kbd>/<kbd>test</kbd> or <kbd>admin</kbd>/<kbd>test123</kbd>.
+			Hint: You may login with <kbd>test</kbd>/<kbd>test123</kbd> or <kbd>admin</kbd>/<kbd>test123</kbd>.
 		</p>
 	</div>
 
