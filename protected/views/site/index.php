@@ -20,11 +20,20 @@ $this->pageTitle=Yii::app()->name;
 <p>Please read the <a href="<?=$this->createUrl('installation')?>">Installation</a> documentation to install it in your Yii application.
 </p>
 
+<p>&nbsp;</p>
+
 <p>
-Demo at <a href="<?=$this->createUrl('/sforum/default/index')?>">demo forum</a></p>
+Demo at <a class="active-link" href="<?=$this->createUrl('/sforum/default/index')?>">demo forum</a></p>
+
+<p>&nbsp;</p>
 
 <p>
 Download Full Code from : <a href="https://github.com/diligencelabs/simple-forum-yii">https://github.com/diligencelabs/simple-forum-yii</a>
+<br/>
+<a href="https://github.com/diligencelabs/simple-forum-yii/zipball/master" class="btn">Download .zip</a>
+</p>
+
+<p>&nbsp;</p>
 
 <p>
 Feel free to ask in the <a href="<?=$this->createUrl('/sforum/default/index')?>">forum</a>, should you have any questions.</p>

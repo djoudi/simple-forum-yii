@@ -88,7 +88,7 @@ ol.install li p {
 
 <ol class="install">
 	<li>
-	<a href="https://github.com/diligencelabs/simple-forum-yii/zipball/master">Download</a> the Simple Forum.
+	<a href="https://github.com/diligencelabs/simple-forum-yii/zipball/master" class="active-link">Download</a> the Simple Forum.
 	</li>
 	
 	<li>
