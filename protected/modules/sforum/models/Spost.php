@@ -72,7 +72,7 @@ class Spost extends SforumActiveRecord
 			
 			if(isset($_SERVER['REMOTE_ADDR'])) $this->ip = $_SERVER['REMOTE_ADDR'];
 			
-			if(Yii::app()->controller && Yii::app()->controller->module && Yii::app()->controller->module->autoApproveComments) {
+			if( SforumUtils::isAdmin() || (Yii::app()->controller && Yii::app()->controller->module && Yii::app()->controller->module->autoApproveComments) ) {
 				$this->status = 1;
 			}
 		}
