@@ -112,6 +112,7 @@ class Spost extends SforumActiveRecord
 				$body = $subject . "\n\n";
 				$body .= SforumUtils::post($this->body) . "\n\n";
 				$body .= 'IP Address: ' . $this->ip . "\n\n";
+				$body .= 'Email: ' . $this->email . "\n\n";
 				
 				$page = 0;
 				if( Yii::app()->controller && Yii::app()->controller->module ) {
