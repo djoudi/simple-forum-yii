@@ -100,7 +100,35 @@ class Spost extends SforumActiveRecord
 			$this->topic->save();
 		}
 		
+		$this->alertUsers();
+		
 		return parent::afterSave();
+	}
+	
+	protected function alertUsers() {
+		if($this->topic && $this->topic->owner) {
+			if( $this->topic->owner->email ) {
+				$subject = ($this->isNewRecord?'New Post Created':'Post updated') . ': ' . CHtml::encode($this->topic->name);
+				$body = $subject . "\n\n";
+				$body .= SforumUtils::post($this->body) . "\n\n";
+				$body .= 'IP Address: ' . $this->ip . "\n\n";
+				
+				$page = 0;
+				if( Yii::app()->controller && Yii::app()->controller->module ) {
+					$page = ceil( $this->topic->of_replies / Yii::app()->controller->module->commentsPerPage );
+				}
+				
+				if( Yii::app()->request ) {
+					$body .= 'Link: ' 
+					. Yii::app()->request->getHostInfo() . '/' 
+					. Yii::app()->createUrl('sforum/stopic/view', array('id' => $this->topic->id)) 
+					. '&Spost_page=' . $page 
+					. '#a-' . $this->id;
+				}
+				
+				SforumUtils::sendMail($this->topic->owner->email, $subject, $body );
+			}
+		}
 	}
 	
 	protected function afterDelete()

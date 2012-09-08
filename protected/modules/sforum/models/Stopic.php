@@ -109,7 +109,8 @@ class Stopic extends SforumActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'forum' => array(self::BELONGS_TO, 'Sforum', 'sforum_id'),
-			'posts' => array(self::HAS_MANY, 'Spost', 'stopic_id')
+			'posts' => array(self::HAS_MANY, 'Spost', 'stopic_id'),
+			'owner' => array(self::BELONGS_TO, 'User', 'created_by'),
 		);
 	}
 
