@@ -15,9 +15,9 @@
 	echo $form->hiddenField($model, 'stopic_id', array());
 	echo $form->hiddenField($model, 'sforum_id', array());
 	?>
+	
 	<div class="row">
-		<?php //echo $form->labelEx($model,'body'); ?>
-		<?php echo $form->textArea($model,'body',array('rows'=>6, 'cols'=>50)); ?>
+		<?php echo SforumUtils::textArea($model,'body',array('rows'=>6, 'cols'=>50)); ?>
 		<?php echo $form->error($model,'body'); ?>
 	</div>
 	

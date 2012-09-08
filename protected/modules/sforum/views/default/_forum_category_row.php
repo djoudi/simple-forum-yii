@@ -11,7 +11,7 @@
 		?>
 		</td>
 		<td width="150">&nbsp;
-			<?php if(Yii::app()->user->isAdmin): ?>
+			<?php if(SforumUtils::isAdmin()): ?>
 			<a href="<?=$this->createUrl('sforum/create', array('Sforum[parent_id]' => $category->id));?>">+ Add Forum</a>
 			 | 
 			<a href="<?=$this->createUrl('scategory/update', array('id' => $category->id));?>">Edit</a>

@@ -63,9 +63,21 @@ class Stopic extends SforumActiveRecord
 		);
 	}
 	
+	protected function beforeSave() {
+	
+		$this->status = 1;
+		
+		return parent::beforeSave();
+	}
+	
 	protected function afterSave()
 	{
-		if($this->isNewRecord && $this->forum) {
+		$count = false;
+		if( isset($this->status) && $this->status == 1 && ( $this->isNewRecord || ($this->old && $this->old->status != $this->status) ) ) {
+			$count = true;
+		}
+		
+		if($count && $this->forum) {
 			$this->forum->of_topics++;
 			$this->forum->save();
 		}
@@ -74,7 +86,12 @@ class Stopic extends SforumActiveRecord
 	
 	protected function afterDelete()
 	{
-		if($this->forum) {
+		$count = false;
+		if( isset($this->status) && $this->status == 1 ) {
+			$count = true;
+		}
+		
+		if($count && $this->forum) {
 			$this->forum->of_topics--;
 			if($this->forum->of_topics <= 0)
 				$this->forum->of_topics = 0;

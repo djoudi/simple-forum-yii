@@ -39,7 +39,7 @@
 		<?php echo $form->labelEx($model,'body'); ?>
 	</div>
 	<div class="row">
-		<?php echo $form->textArea($model,'body',array('rows'=>6, 'cols'=>50)); ?>
+		<?php echo SforumUtils::textArea($model,'body',array('rows'=>6, 'cols'=>50)); ?>
 		<?php echo $form->error($model,'body'); ?>
 	</div>
 

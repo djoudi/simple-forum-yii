@@ -4,8 +4,9 @@
 		echo CHtml::encode($forum->name);
 		?></b>
 		</a>
-		<?php if(Yii::app()->user->isAdmin): ?>
-		 - <a href="<?=$this->createUrl('sforum/update', array('id' => $forum->id));?>">Edit</a>
+		<?php if( SforumUtils::isAdmin() ): ?>
+		- <a href="<?=$this->createUrl('sforum/update', array('id' => $forum->id));?>">Edit</a>
+		
 		<?php endif; ?>
 		<p>
 		<?php

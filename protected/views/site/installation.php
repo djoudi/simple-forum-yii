@@ -20,6 +20,12 @@ ol.install li p {
 <h1>Prerequisites </h1>
 <ol class="install">
 	<li>
+		<b>PHP 5.4</b> (or greater) required.
+	</li>
+	<li>
+		<b>Yii Framework 1.1.10</b> (or greater) required.
+	</li>
+	<li>
 	User component must be enabled in your config.  i.e.  <b>config/main.php</b>
 	<p>
 	<?php
@@ -41,7 +47,7 @@ ol.install li p {
 	</li>
 	
 	<li>
-	And your "WebUser" class must have following methods and variables.  i.e.  <b>components/WebUser.php</b>
+	And your "WebUser" class must have following methods and variables.  i.e.  <b>protected/components/WebUser.php</b>
 	<p>Here I am assuming that you have a model named "User" and that tells whether a user is admin or not.</p>
 	<p>
 	<?php
@@ -82,16 +88,16 @@ ol.install li p {
 
 <ol class="install">
 	<li>
-	<a href="#Download">Download</a> the Simple Forum.
+	<a href="https://github.com/diligencelabs/simple-forum-yii/zipball/master">Download</a> the Simple Forum.
 	</li>
 	
 	<li>
-	Unzip the file and copy "sforum"  directory into your yii application's "modules" directory. after this step you must see "modules/sforum" directory in your application.
+	Unzip the file and copy "protected/modules/sforum"  directory into your yii application's "modules" directory. after this step you must see "modules/sforum" directory in your application.
 	</li>
 	
 	
 	<li>
-	Run the <b>schema.mysql.sql</b> against your database. You will see the list of new tables created.
+	Run the <b>protected/data/schema.mysql.sql</b> against your database. You will see the list of new tables created.
 	</li>
 	
 	<li>

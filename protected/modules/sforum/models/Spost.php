@@ -87,7 +87,7 @@ class Spost extends SforumActiveRecord
 			$count = true;
 		}
 		
-		if( Yii::app()->user->isAdmin )
+		if( SforumUtils::isAdmin() )
 			$count = true;
 		
 		if($count && $this->forum) {
@@ -105,14 +105,19 @@ class Spost extends SforumActiveRecord
 	
 	protected function afterDelete()
 	{
-		if($this->forum) {
+		$count = false;
+		if( isset($this->status) && $this->status == 1 ) {
+			$count = true;
+		}
+		
+		if($count && $this->forum) {
 			$this->forum->of_posts--;
 			if($this->forum->of_posts <= 0)
 				$this->forum->of_posts = 0;
 			$this->forum->save();
 		}
 		
-		if($this->topic) {
+		if($count && $this->topic) {
 			$this->topic->of_replies--;
 			if($this->topic->of_replies <= 0)
 				$this->topic->of_replies = 0;

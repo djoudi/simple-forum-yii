@@ -96,7 +96,7 @@ class SforumbaseController extends CController {
 		}
 
 		$aclrules[] = array('allow',
-			'expression'=>"Yii::app()->user->isAdmin",
+			'expression'=>"SforumUtils::isAdmin()",
 		);
 		$aclrules[] = array('deny',
 			'users'=>array('*'),
@@ -130,7 +130,7 @@ class SforumbaseController extends CController {
 
 			// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 			if(!isset($_GET['ajax']))
-				$this->redirect(array('index'));
+				$this->safeRedirect(array('index'));
 		}
 		else
 			throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
