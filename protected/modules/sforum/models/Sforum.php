@@ -168,7 +168,7 @@ class Sforum extends SforumActiveRecord
 	}
 	
 	public function topics() {
-		$dataProvider = CActiveDataProvider('Stopic', array(
+		$dataProvider = new CActiveDataProvider('Stopic', array(
 			'criteria'=>array(
 				'condition' => "t.sforum_id=:sforum_id",
 				'params' => array(
