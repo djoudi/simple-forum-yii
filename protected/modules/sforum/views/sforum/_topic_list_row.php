@@ -13,6 +13,7 @@ if($index == 0):
 	</th>
 </tr>
 <?php
+echo "<br/>";
 endif;
 ?>
 <tr>
