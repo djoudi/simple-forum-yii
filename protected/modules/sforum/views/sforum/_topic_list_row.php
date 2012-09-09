@@ -20,7 +20,7 @@ endif;
 	<td><a href="<?=$this->createUrl('stopic/view', array('id'=>$data->id))?>">
 	<?=CHtml::encode($data->name)?>
 	</a>
-	<br/>
+	<!-- <br/> -->
 	<span class="author-info">
 		by <?php echo CHtml::encode($data->created_by_name); ?>, 
 		<?php echo SforumUtils::displayDateTime($data->created_on); ?>
