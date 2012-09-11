@@ -12,7 +12,7 @@ $this->breadcrumbs=array(
 
 <h1>Login</h1>
 
-<div class="form">
+<div class="span-12 form" style="">
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'login-form',
 	'enableClientValidation'=>true,
@@ -48,3 +48,6 @@ $this->breadcrumbs=array(
 
 <?php $this->endWidget(); ?>
 </div><!-- form -->
+<div class="span-9 form" style="">
+<?php echo Yii::app()->fbconnect->loginButton() ?>
+</div>

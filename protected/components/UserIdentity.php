@@ -36,4 +36,12 @@ class UserIdentity extends CUserIdentity
 	{
 		return $this->_id;
 	}
+	
+	/**
+	 * @return integer the ID of the user record
+	 */
+	public function setId( $id )
+	{
+		$this->_id = $id;
+	}
 }

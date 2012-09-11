@@ -41,7 +41,7 @@ return array(
 			'allowAutoLogin'=>true,
 		),
 		// uncomment the following to enable URLs in path-format
-		/*
+		
 		'urlManager'=>array(
 			'urlFormat'=>'path',
 			'rules'=>array(
@@ -50,7 +50,7 @@ return array(
 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
 			),
 		),
-		*/
+		
 		// uncomment the following to use a MySQL database
 		
 		'db'=>array(
@@ -59,6 +59,14 @@ return array(
 			'username' => 'root',
 			'password' => '',
 			'charset' => 'utf8',
+		),
+		
+		'fbconnect'=>array(
+			'class' => 'application.extensions.facebook.FacebookConnect',
+			'appId' => '111111111', // Your Facebook APP Id
+			'appSecret' => '222222222222222', // Your Facebook APP Secret
+			'scope' => 'email',
+			'returnUrl' => 'http://apps.diligenceapps.com/forums-extension-yii/index.php/site/fbhandler',
 		),
 		
 		'errorHandler'=>array(
