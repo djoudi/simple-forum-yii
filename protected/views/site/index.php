@@ -14,6 +14,7 @@ $this->pageTitle=Yii::app()->name;
 	<li>User Comments on Topics</li>
 	<li>Approve Comments</li>
 	<li>Email Alerts</li>
+	<li>Facebook/Twitter Login integration</li>
 </ul>
 
 
