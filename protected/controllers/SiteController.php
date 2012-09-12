@@ -19,6 +19,7 @@ class SiteController extends Controller
 				'class'=>'CViewAction',
 			),
 			'fbhandler'=>'application.extensions.facebook.FBResponseHandler',
+			'twhandler'=>'application.extensions.twitter.TwitterResponseHandler',
 		);
 	}
 

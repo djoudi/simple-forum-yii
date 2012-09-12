@@ -49,5 +49,10 @@ $this->breadcrumbs=array(
 <?php $this->endWidget(); ?>
 </div><!-- form -->
 <div class="span-9 form" style="">
-<?php echo Yii::app()->fbconnect->loginButton() ?>
+	<div style="padding-bottom:20px">
+		<?php echo Yii::app()->fbconnect->loginButton() ?>
+	</div>
+	<div style="padding-bottom:20px">
+		<?php echo Yii::app()->twconnect->loginButton() ?>
+	</div>
 </div>

@@ -68,7 +68,13 @@ return array(
 			'scope' => 'email',
 			'returnUrl' => 'http://apps.diligenceapps.com/forums-extension-yii/index.php/site/fbhandler',
 		),
-		
+		'twconnect'=>array(
+			'class' => 'application.extensions.twitter.TwitterConnect',
+			'consumerKey' => '11Gtv0vj62EOvttsCQ100w', // Your Twitter consumer Id
+			'consumerSecret' => 'D8SEkNHP8M7itEyzUHxDDK00NYTl5vdh3kCh7D1rU0', // Your Consumer secret
+			//'returnUrl' => 'http://apps.diligenceapps.com/forums-extension-yii/index.php/site/twhandler',
+			'returnUrl' => 'http://forum.rikonlabs.com/index.php/site/twhandler',
+		),
 		'errorHandler'=>array(
 			// use 'site/error' action to display errors
 			'errorAction'=>'site/error',
